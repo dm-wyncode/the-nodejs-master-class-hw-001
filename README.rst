@@ -13,7 +13,7 @@ To run the server:
 
 An HTTP server running on localhost:3000 will start.
 
-The server accepts only ``POST`` requests with an optional form-encoded payload.
+The server accepts only ``POST`` requests with an optional x-www-form-urlencoded payload.
 
 The server as the following end points:
 
