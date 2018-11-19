@@ -35,7 +35,17 @@ const parsedUrl = req => url.parse(req.url, true),
       notFound = 404,
       POST = "post",
       $headers = headers(req),
-      defaultPayload = buffer => {
+      helloPayload = buffer => {
+        return buffer
+          ? { data: reversedWords(buffer), method: $method, headers: $headers }
+          : {
+              data: { greeting: "Hello!" },
+              warning:
+                "API expects an object with string values. No payload was received.",
+              headers: $headers
+            };
+      },
+      reversePayload = buffer => {
         return buffer
           ? { data: reversedWords(buffer), method: $method, headers: $headers }
           : {
@@ -45,21 +55,25 @@ const parsedUrl = req => url.parse(req.url, true),
               headers: $headers
             };
       },
+      notImplementedHandler = () => {
+        return {
+          error: 'This API only supports "POST" method.',
+          code: notImplemented,
+          headers: $headers
+        };
+      },
       $trimmedPath = trimmedPath(req);
 
     return (
+      //Object with keys as endpoints.
       {
         hello: [
           $method === POST ? ok : notImplemented,
-          $method === POST
-            ? defaultPayload
-            : () => {
-                return {
-                  error: 'This API only supports "POST" method.',
-                  code: notImplemented,
-                  headers: $headers
-                };
-              }
+          $method === POST ? helloPayload : notImplementedHandler
+        ],
+        reverse: [
+          $method === POST ? ok : notImplemented,
+          $method === POST ? reversePayload : notImplementedHandler
         ]
       }[$trimmedPath] || [
         notFound,
