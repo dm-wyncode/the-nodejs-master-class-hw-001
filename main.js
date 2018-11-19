@@ -28,6 +28,9 @@ const parsedUrl = req => url.parse(req.url, true),
     }
     return reversed;
   },
+  greeting = ({ name } = {}) => {
+    return name ? `Hello, ${name}!` : "Hello!";
+  },
   getHandler = req => {
     const $method = method(req),
       ok = 200,
@@ -35,31 +38,50 @@ const parsedUrl = req => url.parse(req.url, true),
       notFound = 404,
       POST = "post",
       $headers = headers(req),
-      defaultPayload = buffer => {
+      helloPayload = buffer => {
+        const defaultHelloPayload = {
+          greeting: greeting(buffer),
+          method: $method,
+          headers: $headers
+        };
+        return buffer
+          ? defaultHelloPayload
+          : {
+              ...defaultHelloPayload,
+              warning:
+                "API expects an object with key 'name' and a string value. No payload was received so a default value was returned."
+            };
+      },
+      reversePayload = buffer => {
         return buffer
           ? { data: reversedWords(buffer), method: $method, headers: $headers }
           : {
               data: {},
+              method: $method,
               warning:
                 "API expects an object with string values. No payload was received.",
               headers: $headers
             };
       },
+      notImplementedHandler = () => {
+        return {
+          error: 'This API only supports "POST" method.',
+          code: notImplemented,
+          headers: $headers
+        };
+      },
       $trimmedPath = trimmedPath(req);
 
     return (
+      //Object with keys as endpoints.
       {
         hello: [
           $method === POST ? ok : notImplemented,
-          $method === POST
-            ? defaultPayload
-            : () => {
-                return {
-                  error: 'This API only supports "POST" method.',
-                  code: notImplemented,
-                  headers: $headers
-                };
-              }
+          $method === POST ? helloPayload : notImplementedHandler
+        ],
+        reverse: [
+          $method === POST ? ok : notImplemented,
+          $method === POST ? reversePayload : notImplementedHandler
         ]
       }[$trimmedPath] || [
         notFound,
