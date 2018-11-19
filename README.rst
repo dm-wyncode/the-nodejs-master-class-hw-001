@@ -2,7 +2,7 @@
 Master NodeJS Class Homework Assignment #1
 ##########################################
 
-This repository contains my submission for the`the NodeJS Master Class`_ homework assignment #1.
+This repository contains my submission for the`the NodeJS Master Class_` homework assignment #1.
 
 To run the server:
 
