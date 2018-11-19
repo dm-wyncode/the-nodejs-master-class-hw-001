@@ -30,8 +30,6 @@ The server as the following end points:
   Its key is "data".
 
 
-The server returns JSON with all of the string values in the payload in reverse order. The keys are preserved.
-
 All endpoints also return error, warning, header, and method information.
 
 To see example output, start the server and then execute the following shell script:
