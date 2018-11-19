@@ -1,10 +1,22 @@
 #!/bin/bash
 
-URL=http://localhost:3000/hello
-curl http://localhost:3000/
+BASEURL=http://localhost:3000/
+HELLO=hello
+REVERSE=reverse
+
+curl "$BASEURL"
 echo "\n"
-curl "$URL"
-curl -X POST "$URL"
+curl $BASEURL$HELLO
 echo "\n"
-curl --data "word=world" --data "cat=cat" "$URL"
+curl $BASEURL$REVERSE
+echo "\n"
+curl -X POST $BASEURL$HELLO
+echo "\n"
+curl -X POST $BASEURL$REVERSE
+echo "\n"
+curl --data 'name=Don' $BASEURL$HELLO
+echo "\n"
+curl --data 'name=Don' --data 'cat=cat' $BASEURL$HELLO
+echo "\n"
+curl --data 'name=Don' --data 'cat=cat' $BASEURL$REVERSE
 echo "\n"
