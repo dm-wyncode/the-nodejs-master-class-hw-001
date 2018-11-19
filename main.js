@@ -28,6 +28,7 @@ const parsedUrl = req => url.parse(req.url, true),
     }
     return reversed;
   },
+  greeting = ({ name }) => `Hello, ${name}`,
   getHandler = req => {
     const $method = method(req),
       ok = 200,
@@ -37,11 +38,11 @@ const parsedUrl = req => url.parse(req.url, true),
       $headers = headers(req),
       helloPayload = buffer => {
         return buffer
-          ? { data: reversedWords(buffer), method: $method, headers: $headers }
+          ? { data: greeting(buffer), method: $method, headers: $headers }
           : {
               data: { greeting: "Hello!" },
               warning:
-                "API expects an object with string values. No payload was received.",
+                "API expects an object with key 'name' and a string value.. No payload was received so a default value was returned.",
               headers: $headers
             };
       },
