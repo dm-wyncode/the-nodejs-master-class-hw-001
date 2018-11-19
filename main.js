@@ -49,7 +49,7 @@ const parsedUrl = req => url.parse(req.url, true),
           : {
               ...defaultHelloPayload,
               warning:
-                "API expects an object with key 'name' and a string value.. No payload was received so a default value was returned."
+                "API expects an object with key 'name' and a string value. No payload was received so a default value was returned."
             };
       },
       reversePayload = buffer => {
