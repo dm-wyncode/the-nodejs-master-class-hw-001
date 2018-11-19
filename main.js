@@ -3,6 +3,7 @@
 const http = require("http"),
   url = require("url"),
   { StringDecoder } = require("string_decoder"),
+  { parse } = require("querystring"),
   defaultPort = 3000,
   //Instantiate the HTTP server.
   httpServer = http.createServer((req, res) => unifiedServer(req, res));
@@ -14,7 +15,6 @@ httpServer.listen(defaultPort, () => {
 
 //Define functions for request processing.
 const parsedUrl = req => url.parse(req.url, true),
-  { parse } = require("querystring"),
   trimmedPath = req => parsedUrl(req).pathname.replace(/^\/+|\/+$/g, ""),
   method = req => req.method.toLowerCase(),
   headers = req => req.headers,
