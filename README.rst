@@ -24,7 +24,6 @@ To see example output, start the server and then run the following:
    . ./test-with-curl.sh
    
 .. image:: server_demo.gif
-
     :align: center
     :alt: screencapture of demo 
 
