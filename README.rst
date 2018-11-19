@@ -2,7 +2,7 @@
 Master NodeJS Class Homework Assignment #1
 ##########################################
 
-This repository contains my submission for the`the NodeJS Master Class_` homework assignment #1.
+This repository contains my submission for the `NodeJS Master Class`_ homework assignment #1.
 
 To run the server:
 
@@ -42,4 +42,4 @@ To see example output, start the server and then execute the following shell scr
     :align: center
     :alt: screencapture of demo 
 
-.. _`the NodeJS Master Class`: https://pirple.thinkific.com/courses/the-nodejs-master-class
+.. _`NodeJS Master Class`: https://pirple.thinkific.com/courses/the-nodejs-master-class
