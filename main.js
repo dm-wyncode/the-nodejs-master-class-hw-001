@@ -39,14 +39,17 @@ const parsedUrl = req => url.parse(req.url, true),
       POST = "post",
       $headers = headers(req),
       helloPayload = buffer => {
+        const defaultHelloPayload = {
+          greeting: greeting(buffer),
+          method: $method,
+          headers: $headers
+        };
         return buffer
-          ? { data: greeting(buffer), method: $method, headers: $headers }
+          ? defaultHelloPayload
           : {
-              data: greeting(buffer),
-              method: $method,
+              ...defaultHelloPayload,
               warning:
-                "API expects an object with key 'name' and a string value.. No payload was received so a default value was returned.",
-              headers: $headers
+                "API expects an object with key 'name' and a string value.. No payload was received so a default value was returned."
             };
       },
       reversePayload = buffer => {
