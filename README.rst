@@ -13,11 +13,28 @@ To run the server:
 
 An HTTP server running on localhost:3000 will start.
 
-The server accepts only ``POST`` requests with a form-encoded payload.
+The server accepts only ``POST`` requests with an optional form-encoded payload.
+
+The server as the following end points:
+
+* hello 
+
+  If a payload with a key of "name", "Hello, {name}!" is returned with a key of "greeting".
+
+  Other wise "Hello!" is returned with a key of "greeting".
+
+* reverse
+
+  This endpoint takes a payload with key value pairs. And object is returned with the values reversed.
+
+  Its key is "data".
+
 
 The server returns JSON with all of the string values in the payload in reverse order. The keys are preserved.
 
-To see example output, start the server and then run the following:
+All endpoints also return error, warning, header, and method information.
+
+To see example output, start the server and then execute the following shell script:
 
 .. code-block:: shell
 
