@@ -1,2 +1,5 @@
 log.log
 dev_tools/
+record
+*.log
+*.mp4
