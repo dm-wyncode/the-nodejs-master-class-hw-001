@@ -38,8 +38,13 @@ To see example output, start the server and then execute the following shell scr
 
    . ./test-with-curl.sh
    
-.. image:: server_demo.gif
+.. image:: ./images/server_demo.gif
     :align: center
     :alt: screencapture of demo 
+
+.. image:: ./images/pirple_grade.png
+
+    :align: center
+    :alt: screencapture of grade 
 
 .. _`NodeJS Master Class`: https://pirple.thinkific.com/courses/the-nodejs-master-class
