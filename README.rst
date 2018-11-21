@@ -43,7 +43,6 @@ To see example output, start the server and then execute the following shell scr
     :alt: screencapture of demo 
 
 .. image:: ./images/pirple_grade.png
-
     :align: center
     :alt: screencapture of grade 
 
